@@ -12,6 +12,9 @@ attributes:
     rect: The rectangle of the background
 """
 class Background(pygame.sprite.Sprite):
+    """
+    Inititate the background
+    """
     def __init__(self):
         super(Background, self).__init__()
         self.surf = pygame.image.load("media/sprites/bg.png").convert()

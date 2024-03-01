@@ -13,6 +13,9 @@ attributes:
     rect: The rectangle of the agent
 
     _IsAlive: Boolean to check if the agent is alive
+    _IsJumping: Boolean to check if the agent is jumping
+    _Velocity: The bird's velocity
+    _Mass: The bird's mass
 """
 class Agent(pygame.sprite.Sprite):
     """
@@ -30,23 +33,16 @@ class Agent(pygame.sprite.Sprite):
         self._IsJumping = False
         self._Mass = constants.BIRD_MASS
 
-    """
-    The input handler
 
-    params:
-        - pressedKeys: A dictionary containing the keys pressed at the beginning of every frame
     """
-    def inputHandler(self, pressedKeys):
-        if pressedKeys[K_SPACE] and not self._IsJumping:
-            self.jump()
-
+    Make the agent jump
+    """
     def jump(self):
         self._Velocity = -constants.BIRD_FLY_VEL
         self._IsJumping = True
 
     """
     Center the agent
-
     params:
         - windowWidth: The window's width
         - windowHeight: The window's height
@@ -71,12 +67,10 @@ class Agent(pygame.sprite.Sprite):
 
     """
     Update the agent
-
     params:
         - dt: The delta time since the last frame
     """
     def update(self, dt):
-        # TODO:
         self._Velocity += constants.GRAVITY * self._Mass
         self.rect.move_ip(0, self._Velocity)
 
